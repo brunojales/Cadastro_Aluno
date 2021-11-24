@@ -20,7 +20,7 @@ public class Principal {
 		Object[] acaoOpcao = { "Cadastrar", "Pesquisar por Matricula", "Pesquisar por Nome", "Pesquisar por Sobrenome",
 				"Sair" };
 		Object[] alteracaoOpcao = { "Alterar Nome", "Alterar Sobrenome", "Alterar Email", "voltar" };
-
+		/**INCLUINDO ESSA LINHA PARA TESTE DE COMMIT DO GIT**/
 		do {
 			// janela de escolha de ação do usuário
 			acaoEscolha = JOptionPane.showInputDialog(null, "Escolha uma ação:", "Ação", JOptionPane.QUESTION_MESSAGE,
