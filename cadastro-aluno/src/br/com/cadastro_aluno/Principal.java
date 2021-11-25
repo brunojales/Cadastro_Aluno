@@ -16,11 +16,14 @@ public class Principal {
 		// Declaração de variaveis
 		Object acaoEscolha;
 		Object alteracaoEscolha;
+		Object desistirEscolha;
 
 		Object[] acaoOpcao = { "Cadastrar", "Pesquisar por Matricula", "Pesquisar por Nome", "Pesquisar por Sobrenome",
 				"Sair" };
-		Object[] alteracaoOpcao = { "Alterar Nome", "Alterar Sobrenome", "Alterar Email", "voltar" };
-		/**INCLUINDO ESSA LINHA PARA TESTE DE COMMIT DO GIT**/
+		Object[] alteracaoOpcao = { "Alterar Nome", "Alterar Sobrenome", "Alterar Email", "Excluir Aluno", "voltar" };
+		Object[] desistirOpcao = { "Sim", "Não" };
+
+		/** INCLUINDO ESSA LINHA PARA TESTE DE COMMIT DO GIT **/
 		do {
 			// janela de escolha de ação do usuário
 			acaoEscolha = JOptionPane.showInputDialog(null, "Escolha uma ação:", "Ação", JOptionPane.QUESTION_MESSAGE,
@@ -47,10 +50,10 @@ public class Principal {
 				cadastro.pesquisarMatricula(aluno);
 				// exibe os dados na tela e armazena opcao na variavel
 				alteracaoEscolha = JOptionPane.showInputDialog(null,
-						"ID: " + aluno.getIdAluno() + ".\nMatrícula: " + aluno.getMatriculaAluno() + ".\nNome e Sobrenome: "
-								+ aluno.getNome() + " " + aluno.getSobrenome() + ".\nE-mail: "
+						"ID: " + aluno.getIdAluno() + ".\nMatrícula: " + aluno.getMatriculaAluno()
+								+ ".\nNome e Sobrenome: " + aluno.getNome() + " " + aluno.getSobrenome() + ".\nE-mail: "
 								+ aluno.getEmail() + ".\nClasse: " + aluno.getClasseAluno() + ".",
-						"alteração Cadastral", JOptionPane.QUESTION_MESSAGE, null, alteracaoOpcao, alteracaoOpcao[1]);
+						"alteração Cadastral", JOptionPane.QUESTION_MESSAGE, null, alteracaoOpcao, alteracaoOpcao[4]);
 
 				if (alteracaoEscolha == "Alterar Nome") {
 					// recebe o nome a ser alterado
@@ -76,6 +79,18 @@ public class Principal {
 					// exibe mesangem de sucesso
 					JOptionPane.showMessageDialog(null, "E-mail alterado com sucesso!!!");
 
+				}else if (alteracaoEscolha == "Excluir Aluno") {
+					desistirEscolha = JOptionPane.showInputDialog(null, "Tem certeza que deseja excluir?", "Desistir",
+							JOptionPane.QUESTION_MESSAGE, null, desistirOpcao, desistirOpcao[0]);
+
+					if (desistirEscolha == "Sim") {
+						cadastro.excluir(aluno);
+						JOptionPane.showMessageDialog(null, "Aluno excluido com sucesso!");
+
+					} else {
+						JOptionPane.showMessageDialog(null, "Operação cancelada!");
+					}
+
 				}
 
 			} else if (acaoEscolha == "Pesquisar por Nome") {
@@ -87,9 +102,9 @@ public class Principal {
 				// exibe os dados na tela e armazena opcao na variavel
 				alteracaoEscolha = JOptionPane.showInputDialog(null,
 						"ID: " + aluno.getIdAluno() + ".\nMatrícula: " + aluno.getMatriculaAluno()
-								+ ".\nNome e Sobrenome: " + aluno.getNome()+ " " + aluno.getSobrenome() + ".\nE-mail: "
+								+ ".\nNome e Sobrenome: " + aluno.getNome() + " " + aluno.getSobrenome() + ".\nE-mail: "
 								+ aluno.getEmail() + ".\nClasse: " + aluno.getClasseAluno() + ".",
-						"alteração Cadastral", JOptionPane.QUESTION_MESSAGE, null, alteracaoOpcao, alteracaoOpcao[3]);
+						"alteração Cadastral", JOptionPane.QUESTION_MESSAGE, null, alteracaoOpcao, alteracaoOpcao[4]);
 
 				if (alteracaoEscolha == "Alterar Nome") {
 					// recebe o nome a ser alterado
@@ -114,8 +129,20 @@ public class Principal {
 					cadastro.alterarEmail(aluno);
 					// exibe mesangem de sucesso
 					JOptionPane.showMessageDialog(null, "E-mail alterado com sucesso!!!");
+				}else if (alteracaoEscolha == "Excluir Aluno") {
+					desistirEscolha = JOptionPane.showInputDialog(null, "Tem certeza que deseja excluir?", "Desistir",
+							JOptionPane.QUESTION_MESSAGE, null, desistirOpcao, desistirOpcao[0]);
+
+					if (desistirEscolha == "Sim") {
+						cadastro.excluir(aluno);
+						JOptionPane.showMessageDialog(null, "Aluno excluido com sucesso!");
+
+					} else {
+						JOptionPane.showMessageDialog(null, "Operação cancelada!");
+					}
+
 				}
-				
+
 			} else if (acaoEscolha == "Pesquisar por Sobrenome") {
 				//
 				aluno.setSobrenome(JOptionPane.showInputDialog("Informe o Sobrenome a ser pesquisado: "));
@@ -125,7 +152,7 @@ public class Principal {
 				// exibe os dados na tela e armazena opcao na variavel
 				alteracaoEscolha = JOptionPane.showInputDialog(null,
 						"ID: " + aluno.getIdAluno() + ".\nMatrícula: " + aluno.getMatriculaAluno()
-								+ ".\nNome e Sobrenome: " + aluno.getNome()+ " " + aluno.getSobrenome() + ".\nE-mail: "
+								+ ".\nNome e Sobrenome: " + aluno.getNome() + " " + aluno.getSobrenome() + ".\nE-mail: "
 								+ aluno.getEmail() + ".\nClasse: " + aluno.getClasseAluno() + ".",
 						"alteração Cadastral", JOptionPane.QUESTION_MESSAGE, null, alteracaoOpcao, alteracaoOpcao[3]);
 
@@ -153,14 +180,25 @@ public class Principal {
 					// exibe mesangem de sucesso
 					JOptionPane.showMessageDialog(null, "E-mail alterado com sucesso!!!");
 
-				} 
+				} else if (alteracaoEscolha == "Excluir Aluno") {
+					desistirEscolha = JOptionPane.showInputDialog(null, "Tem certeza que deseja excluir?", "Desistir",
+							JOptionPane.QUESTION_MESSAGE, null, desistirOpcao, desistirOpcao[0]);
 
-			}else {
-				// informa que o programa se encerrou
-				JOptionPane.showMessageDialog(null, "Aplicação encerrada!");
+					if (desistirEscolha == "Sim") {
+						cadastro.excluir(aluno);
+						JOptionPane.showMessageDialog(null, "Aluno excluido com sucesso!");
 
-				// encerra a aplicação
-				System.exit(0);
+					} else {
+						JOptionPane.showMessageDialog(null, "Operação cancelada!");
+					}
+
+				} else {
+					// informa que o programa se encerrou
+					JOptionPane.showMessageDialog(null, "Aplicação encerrada!");
+
+					// encerra a aplicação
+					System.exit(0);
+				}
 			}
 
 		} while (acaoEscolha != "Sair");

@@ -1,8 +1,5 @@
 package br.com.cadastro_aluno.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.*;
 
 import br.com.cadastro_aluno.ConexaoBanco;
@@ -216,6 +213,24 @@ public class AlunoDAO extends Aluno implements AlunoDAOInterface {
 			throw new RuntimeException(e);
 		}
 
+	}@Override
+	public void excluir(Aluno aluno) {
+		String sql = "DELETE FROM tb_aluno WHERE id_aluno = ?";
+		
+		try {
+			// declara variável do tipo Preapred Statement
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			// repassa os valores para a consulta sql
+			stmt.setLong(1, aluno.getIdAluno());
+			// executa a consulta sql
+			stmt.execute();
+			// fecha o objeto da consulta
+			stmt.close();
+
+		} catch (SQLException e) {
+			// retorna erro caso método não seja executado
+			throw new RuntimeException(e);
+		}
 	}
 
 }

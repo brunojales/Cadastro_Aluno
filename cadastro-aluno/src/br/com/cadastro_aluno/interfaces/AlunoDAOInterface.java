@@ -18,5 +18,7 @@ public interface AlunoDAOInterface {
 	public void alterarSobrenome(Aluno aluno);
 
 	public void alterarEmail(Aluno aluno);
+	
+	public void excluir(Aluno aluno);
 
 }
